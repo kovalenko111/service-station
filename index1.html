@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СТО</title>
+    <link rel="stylesheet" href="main.css">
+    
+</head>
+<body>
+
+    
+    <div class="tabs-menu">
+        <button class="tab-btn active" onclick="openTab(event, 'services')">Послуги</button>
+        <button class="tab-btn" onclick="openTab(event, 'staff')">Наші співробітники</button>
+        <button class="tab-btn" onclick="openTab(event, 'contacts')">Контактна інформація</button>
+        <button class="tab-btn" onclick="openTab(event, 'warranty')">Гарантійні зобов'язання</button>
+        <button class="tab-btn" onclick="openTab(event, 'regulations')">Регламент ТО</button>
+        <button class="tab-btn" onclick="openTab(event, 'packages')">Ціни (Пакети ТО)</button>
+    </div>
+
+   
+    <table id="services" class="tab-content active">
+        <caption><h3>СТО - Послуги</h3></caption>
+        <thead>
+            <tr>
+                <th>Найменування</th>
+                <th>Ціна</th>
+                <th>Час роботи</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Заміна коліс</td>
+                <td>500</td>
+                <td>15 хвилин</td>
+            </tr>
+            <tr>
+                <td>Чистка салону</td>
+                <td>900</td>
+                <td>60 хвилин</td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+    <table id="staff" class="tab-content">
+        <caption><h3>Наші співробітники</h3></caption>
+        <thead>
+            <tr>
+                <th>ПІБ Співробітника</th>
+                <th>Посада / Спеціалізація</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Іваненко Іван Іванович</td>
+                <td>Майстер ходової частини</td>
+            </tr>
+            <tr>
+                <td>Petренко Петро Петрович</td>
+                <td>Автоелектрик</td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+    <table id="contacts" class="tab-content">
+        <caption><h3>Контакти та графік роботи</h3></caption>
+        <thead>
+            <tr>
+                <th>День тижня</th>
+                <th>Час роботи</th>
+                <th>Контактні дані</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Понеділок — П'ятниця</td>
+                <td>09:00 – 19:00</td>
+                <td rowspan="3">
+                    <strong>Телефон:</strong> <a href="tel:+380000000000">+38 (000) 000-00-00</a><br>
+                    <strong>Адреса:</strong> м. Київ, вул. Автомобільна, 12<br>
+                    <strong>Email:</strong> info@sto-example.com
+                </td>
+            </tr>
+            <tr>
+                <td>Субота</td>
+                <td>10:00 – 16:00</td>
+            </tr>
+            <tr>
+                <td>Неділя</td>
+                <td>Вихідний</td>
+            </tr>
+        </tbody>
+    </table>
+
+   
+    <table id="warranty" class="tab-content">
+        <caption><h3>Гарантійні зобов'язання</h3></caption>
+        <thead>
+            <tr>
+                <th>Вид послуги / Запчастини</th>
+                <th>Термін гарантії</th>
+                <th>Умова</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ремонт ходової частини</td>
+                <td>6 місяців або 10 000 км</td>
+                <td>При встановленні наших запчастин</td>
+            </tr>
+            <tr>
+                <td>Капітальний ремонт двигуна</td>
+                <td>12 місяців або 20 000 км</td>
+                <td>Дотримання правил обкатки</td>
+            </tr>
+            <tr>
+                <td>Заміна мастила та фільтрів</td>
+                <td>До наступного ТО</td>
+                <td>За регламентом виробника</td>
+            </tr>
+        </tbody>
+    </table>
+
+   
+    <table id="regulations" class="tab-content">
+        <caption><h3>Регламент технічного обслуговування (ТО)</h3></caption>
+        <thead>
+            <tr>
+                <th>Що замінюємо / Перевіряємо</th>
+                <th>Періодичність (км або час)</th>
+                <th>Примітка</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Мастило двигуна та масляний фільтр</td>
+                <td>Кожні 8 000 – 10 000 км або 1 раз на рік</td>
+                <td>Обов'язково при кожному ТО</td>
+            </tr>
+            <tr>
+                <td>Фільтр повітря та фільтр салону</td>
+                <td>Кожні 10 000 – 15 000 км</td>
+                <td>Частіше, якщо пильні дороги</td>
+            </tr>
+            <tr>
+                <td>Ремінь ГРМ та ролики</td>
+                <td>Кожні 60 000 – 90 000 км</td>
+                <td>Залежить від моделі авто</td>
+            </tr>
+            <tr>
+                <td>Гальмівна рідина та антифриз</td>
+                <td>Кожні 40 000 км або раз на 2 роки</td>
+                <td>Втрачають свои властивості з часом</td>
+            </tr>
+        </tbody>
+    </table>
+
+   
+    <table id="packages" class="tab-content">
+        <caption><h3>Комплексні пакети регулярного ТО</h3></caption>
+        <thead>
+            <tr>
+                <th>Пакет послуг</th>
+                <th>Що входить у вартість?</th>
+                <th>Рекомендований інтервал</th>
+                <th>Вартість робіт (грн)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Базове ТО (ТО-1)</strong></td>
+                <td>
+                    • Заміна мастила двигуна<br>
+                    • Заміна масляного фільтра<br>
+                    • Заміна фільтра салону та повітря<br>
+                    • Базова діагностика підвіски (безкоштовно)
+                </td>
+                <td>Кожні 10 000 км</td>
+                <td><strong>600</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Оптимальне ТО (ТО-2)</strong></td>
+                <td>
+                    • Все, що входить у «Базове ТО»<br>
+                    • Комп'ютерна діагностика всіх систем<br>
+                    • Перевірка та регулювання розвал-сходження<br>
+                    • Перевірка гальмівної системи та колодок
+                </td>
+                <td>Кожні 30 000 км</td>
+                <td><strong>1200</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Максимальне ТО (ТО-3)</strong></td>
+                <td>
+                    • Все, що входить у «Оптимальне ТО»<br>
+                    • Заміна гальмівної рідини<br>
+                    • Заміна свічок запалювання<br>
+                    • Перевірка та обслуговування кондиціонера
+                </td>
+                <td>Кожні 60 000 км</td>
+                <td><strong>2500</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+    <script src="new.js"></script>
+</body>
+</html>

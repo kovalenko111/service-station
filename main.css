@@ -1,0 +1,37 @@
+
+        
+        .tab-content {
+            display: none; /* По умолчанию скрываем все таблицы */
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .tab-content.active {
+            display: table; /* Показываем только активную таблицу */
+        }
+        .tabs-menu {
+            margin-bottom: 15px;
+        }
+        .tabs-menu button {
+            padding: 10px 15px;
+            margin-right: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            border: 1px solid #ccc;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+        .tabs-menu button.active {
+            background-color: #007bff;
+            color: white;
+            border: 1px solid #007bff;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    
