@@ -1,13 +1,13 @@
 
         
         .tab-content {
-            display: none; /* По умолчанию скрываем все таблицы */
+            display: none; 
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
         }
         .tab-content.active {
-            display: table; /* Показываем только активную таблицу */
+            display: table; 
         }
         .tabs-menu {
             margin-bottom: 15px;
