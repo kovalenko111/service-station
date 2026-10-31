@@ -1,17 +1,23 @@
 
 let activeTabId = 'services';
+let tablesChannel = null;
+try {
+    tablesChannel = new BroadcastChannel('sto_tables_sync');
+} catch (error) {
+    console.warn('BroadcastChannel недоступен:', error);
+}
 
 
 function saveAllTablesToStorage() {
     let tablesData = {};
-    
+
     const tables = document.querySelectorAll('.tab-content:not(#contacts)');
     tables.forEach(table => {
         let rowsData = [];
         const rows = table.querySelectorAll('tbody tr');
         rows.forEach(row => {
             let cellsData = [];
-            
+
             for (let i = 0; i < row.cells.length; i++) {
                 if (row.cells[i].querySelector('button')) continue;
                 cellsData.push(row.cells[i].innerText.trim());
@@ -20,10 +26,14 @@ function saveAllTablesToStorage() {
         });
         tablesData[table.id] = rowsData;
     });
-    
-   
+
     localStorage.setItem('sto_tables_cache', JSON.stringify(tablesData));
+
+    if (tablesChannel) {
+        tablesChannel.postMessage('tables-updated');
+    }
 }
+
 
 function loadAllTablesFromStorage() {
     const cachedData = localStorage.getItem('sto_tables_cache');
@@ -49,15 +59,44 @@ function loadAllTablesFromStorage() {
             const tr = document.createElement('tr');
             
             
-            rowData.forEach(cellText => {
-                const td = document.createElement('td');
-                
-                if (tableId !== 'packages' || rowData.indexOf(cellText) !== 1) {
-                    td.className = 'editable';
-                }
-                td.innerText = cellText;
-                tr.appendChild(td);
-            });
+            rowData.forEach((cellText, index) => {
+    const td = document.createElement('td');
+
+    if (tableId === 'packages' && index === 1) {
+        const select = document.createElement('select');
+        select.style.padding = '4px';
+        select.style.width = '100%';
+
+        const servicesRows = document.querySelectorAll('#services tbody tr');
+
+        servicesRows.forEach(row => {
+            const name = row.cells[0]?.innerText.trim();
+            if (!name) return;
+
+            const option = document.createElement('option');
+            option.value = name;
+            option.textContent = name;
+            select.appendChild(option);
+        });
+
+        if (cellText && !Array.from(select.options).some(option => option.value === cellText)) {
+            const option = document.createElement('option');
+            option.value = cellText;
+            option.textContent = cellText;
+            select.appendChild(option);
+        }
+
+        select.value = cellText;
+        select.addEventListener('change', saveAllTablesToStorage);
+
+        td.appendChild(select);
+    } else {
+        td.className = 'editable';
+        td.innerText = cellText;
+    }
+
+    tr.appendChild(td);
+});
 
             
             const deleteTd = document.createElement('td');
@@ -74,11 +113,7 @@ function loadAllTablesFromStorage() {
 }
 
 
-window.addEventListener('storage', function(e) {
-    if (e.key === 'sto_tables_cache') {
-        loadAllTablesFromStorage();
-    }
-});
+
 
 
 function openTab(evt, tabId) {
@@ -277,4 +312,13 @@ document.addEventListener('click', function(e) {
     input.addEventListener('blur', save);
 }); 
 
+   window.addEventListener('storage', function(event) {
+    if (event.key === 'sto_tables_cache') {
+        loadAllTablesFromStorage();
+    }
+});
 
+document.addEventListener('DOMContentLoaded', function() {
+    loadAllTablesFromStorage();
+    adjustFormInputs(activeTabId);
+});
